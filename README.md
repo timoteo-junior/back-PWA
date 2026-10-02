@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CRUD de Usuários com Node.js
 
 Projeto simples usando Node.js, Express e Mongoose.
@@ -44,3 +45,6 @@ npm run dev
   "idade": 25
 }
 ```
+=======
+# back-PWA
+>>>>>>> 81f31b0dae90b741de35f557829c0e423ea7a557

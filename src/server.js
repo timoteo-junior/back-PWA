@@ -19,6 +19,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor a correr na porta ${PORT}`);
 });
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/crud_filmes";
 
 mongoose
   .connect(MONGODB_URI)
