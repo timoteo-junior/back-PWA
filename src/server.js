@@ -16,16 +16,15 @@ app.get("/", (req, res) => {
 app.use("/filmes", filmeRoutes);
 
 const PORT = process.env.PORT || 3000;
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/crud_filmes";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/crud_filmes";
 
+// 1. Inicia a ligação ao banco de dados (sem prender o servidor)
 mongoose
   .connect(MONGODB_URI)
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Servidor rodando em http://localhost:${PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.error("Erro ao conectar ao MongoDB:", error.message);
-  });
+  .then(() => console.log("Ligado ao MongoDB com sucesso!"))
+  .catch((error) => console.error("Erro ao ligar ao MongoDB:", error.message));
+
+// 2. Inicia o servidor IMEDIATAMENTE para o Render não dar erro de porta
+app.listen(PORT, () => {
+  console.log(`Servidor a correr na porta ${PORT}`);
+});
