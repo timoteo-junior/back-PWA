@@ -11,11 +11,18 @@ async function listarFilmes(req, res) {
 
 async function buscarFilme(req, res) {
   try {
-    // Agora pesquisa pelo título (ignorando maiúsculas e minúsculas) em vez do ID
     const termoBusca = req.params.id;
-    const filme = await Filme.findOne({ 
-      titulo: { $regex: termoBusca, $options: 'i' } 
-    });
+    let filme;
+
+    // Verifica se o termo digitado tem o formato exato de um ID do MongoDB (24 caracteres hexadecimais)
+    if (/^[0-9a-fA-F]{24}$/.test(termoBusca)) {
+      filme = await Filme.findById(termoBusca);
+    } else {
+      // Se não for um ID, assume que é uma busca por texto e pesquisa no título
+      filme = await Filme.findOne({
+        titulo: { $regex: termoBusca, $options: 'i' }
+      });
+    }
 
     if (!filme) {
       return res.status(404).json({ mensagem: "Filme não encontrado" });
