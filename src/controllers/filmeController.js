@@ -14,11 +14,9 @@ async function buscarFilme(req, res) {
     const termoBusca = req.params.id;
     let filme;
 
-    // Verifica se o termo digitado tem o formato exato de um ID do MongoDB (24 caracteres hexadecimais)
     if (/^[0-9a-fA-F]{24}$/.test(termoBusca)) {
       filme = await Filme.findById(termoBusca);
     } else {
-      // Se não for um ID, assume que é uma busca por texto e pesquisa no título
       filme = await Filme.findOne({
         titulo: { $regex: termoBusca, $options: 'i' }
       });
