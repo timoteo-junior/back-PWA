@@ -1,21 +1,25 @@
-# CRUD de Usuários com Node.js
+# CRUD de Filmes com Node.js
 
-Projeto simples usando Node.js, Express e Mongoose.
+Projeto acadêmico construído com Node.js, Express e Mongoose para gestão de um catálogo de filmes.
 
-## Estrutura
+## Estrutura do Projeto
 
 ```text
 src/
 ├── controllers/
-│   └── userController.js
+│   └── filmeController.js
 ├── models/
-│   └── User.js
+│   └── Filme.js
 ├── routes/
-│   └── userRoutes.js
+│   └── filmeRoutes.js
 └── server.js
 ```
 
-## Executar
+## Deploy na Nuvem
+A API está hospedada no Render e responde no endereço: 
+**https://api-filmes-back.onrender.com/filmes**
+
+## Executar Localmente
 
 ```bash
 npm install
@@ -23,24 +27,25 @@ cp .env.example .env
 npm run dev
 ```
 
-É necessário ter o MongoDB rodando localmente.
+**Nota:** É necessário configurar a variável `MONGODB_URI` no arquivo `.env` com a string de conexão do MongoDB Atlas.
 
-## Rotas
+## Rotas da API
 
 | Método | Rota | Ação |
 |---|---|---|
-| GET | /usuarios | Lista usuários |
-| GET | /usuarios/:id | Busca um usuário |
-| POST | /usuarios | Cria um usuário |
-| PUT | /usuarios/:id | Atualiza um usuário |
-| DELETE | /usuarios/:id | Exclui um usuário |
+| GET | /filmes | Lista todos os filmes cadastrados |
+| GET | /filmes/:id | Busca um filme (suporta pesquisa por ID ou por parte do Título) |
+| POST | /filmes | Cadastra um novo filme |
+| PUT | /filmes/:id | Atualiza os dados de um filme existente |
+| DELETE | /filmes/:id | Exclui um filme do banco de dados |
 
-## Exemplo de JSON
+## Exemplo de JSON (Payload)
 
 ```json
 {
-  "nome": "João Silva",
-  "email": "joao@email.com",
-  "idade": 25
+  "titulo": "O Auto da Compadecida",
+  "diretor": "Guel Arraes",
+  "dataLancamento": "2000-09-15",
+  "genero": "Comédia"
 }
 ```
